@@ -6,6 +6,8 @@
 - Phan Gia Bảo 
 - Nguyễn Văn Tú
 - Lê Ngọc Hiếu
+- Trà My :)
+
 2. Các chức năng:
 => Thêm sách vào thư viện
 - ID sách
