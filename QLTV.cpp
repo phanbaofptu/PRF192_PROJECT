@@ -188,7 +188,7 @@ int findStudent(ST dssv[], int m, char tensv[]){
 	}
 	return 0;
 }
-void xoaSinhVienTheoId(ST dssv[], int &m, int idsv){
+void xoaSinhVienTheoId(ST dssv[], int &m, char idsv){
 	for(int i=0; i<m ; i++){
 		if(dssv[i].idsv == idsv){
 			for(int j=i; j<m; j++){
@@ -202,7 +202,8 @@ void xoaSinhVienTheoId(ST dssv[], int &m, int idsv){
 int main(){
 	SV ds[100];
 	ST dssv[100];
-	int n, m, idsv;
+	int n, m;
+	char idsv;
 	int choose;
 	do{
 		printf("------------------MENU-----------------");
@@ -248,8 +249,7 @@ int main(){
 				printf("\nNhap ID Sinh vien can xoa"); scanf("%d", &id);
 				printf("\nDanh sach sau khi xoa\n");
 				xoaSinhVienTheoId(dssv, m, idsv);
-				xuatDanhSachSinhVien(dssv, m);
-				nhapPhimBatKy();
+				displayNameSVList(dssv, m);
 				break;
 			case 8 :
 				exportSVFromFile(dssv,m);
