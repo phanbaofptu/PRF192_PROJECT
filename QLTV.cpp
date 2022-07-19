@@ -194,21 +194,22 @@ int main(){
 	int choose;
 	do{
 		printf("------------------MENU-----------------");
-		printf("\n1.Them sach vao thu vien");
-		printf("\n2.Sua thong tin sach");
-		printf("\n3.Xoa mot cuon sach");
-		printf("\n4.Hien thi danh sach sach co trong thu vien");
-		printf("\n5.NhapThong tin sinh vien");
-		printf("\n6.Sua thong tin sinh vien");
-		printf("\n7.Xoa mot sinh vien");
-		printf("\n8.Liet ke toan bo sinh vien");
-		printf("\n9.");
-		printf("\n10.");
-		printf("\n11.");
-		printf("\n12.");
-		printf("\n13.Tinh tien phat");
-		printf("\n14.Tim mot quyen sach");
-		printf("\n15.Tim mot hoc sinh theo ten");
+		printf("\n1 - Them sach vao thu vien");
+		printf("\n2 - Sua thong tin sach");
+		printf("\n3 - Xoa mot cuon sach");
+		printf("\n4 - In ra danh sach sach");
+		printf("\n5 - Tim mot quyen sach");
+		printf("\n6 - Thong tin 1 sinh vien");
+		printf("\n7 - Liet ke toan bo thong tin sinh vien");
+		printf("\n8 - Xoa thong tin sinh vien");
+		printf("\n9 - Muon sach");
+		printf("\n10 - Liet ke nhung sach da muon cua sinh vien");
+		printf("\n11 - Tra sach");
+		printf("\n12 - Liet ke toan bo sach da duoc muon");
+		printf("\n13 - Tinh tien phat");
+		printf("\n14 - .Tim mot hoc sinh theo ten");
+		printf("\n15 - Thoat");
+		printf("\n----------------------------------------\ n\n");
 		printf("\nPlease choose menu(1-14): ");
 		scanf("%d", &choose);
 		switch(choose){
