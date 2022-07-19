@@ -202,7 +202,7 @@ void xoaSinhVienTheoId(ST dssv[], int &m, int idsv){
 int main(){
 	SV ds[100];
 	ST dssv[100];
-	int n, m;
+	int n, m, idsv;
 	int choose;
 	do{
 		printf("------------------MENU-----------------");
