@@ -170,9 +170,9 @@ void exportSVFromFile(ST ds[], int &n){
 	fclose(f);
 }
 void displayNameSV(ST st){
-	printf("\nStudent ID: %s", sv.idsv);
-	printf("\nStudent Name: %s", sv.tensv);
-	printf("\nMajor: %s", sv.nganhsv);
+	printf("\nStudent ID: %s", st.idsv);
+	printf("\nStudent Name: %s", st.tensv);
+	printf("\nMajor: %s", st.nganhsv);
 }
 void displayNameSVList(ST ds[], int n){
 	for(int i=0;i<n;i++){
