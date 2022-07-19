@@ -120,52 +120,52 @@ void addStudent(ST &st){
 	fflush(stdin);
 	fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 }
-void addStudentList(ST ds[], int &n){
+void addStudentList(ST dssv[], int &m){
 	do{
 		printf("\nEnter the number of Student: ");
-		scanf("%d", &n);
+		scanf("%d", &m);
 	}
-	while(n<=0);
-		for(int i=0;i<n;i++){
+	while(m<=0);
+		for(int i=0;i<m;i++){
 			printf("\nStudent No. %d", i+1);
-			addStudent(ds[i]);
+			addStudent(dssv[i]);
 		}
 }
-void sapXepDanhSachSVTheoTen(ST ds[], int n){
-	for(int i=0; i<n-1; i++){
-		for(int j=i+1; j<n; j++){
-			if(strcmp(strupr(ds[i].tensv), strupr(ds[j].tensv))>0){
+void sapXepDanhSachSVTheoTen(ST dssv[], int m){
+	for(int i=0; i<m-1; i++){
+		for(int j=i+1; j<m; j++){
+			if(strcmp(strupr(dssv[i].tensv), strupr(dssv[j].tensv))>0){
 				ST temp;
-				temp = ds[i];
-				ds[i] = ds[j];
-				ds[j]=temp;
+				temp = dssv[i];
+				dssv[i] = dssv[j];
+				dssv[j]=temp;
 			}
 		}
 	}
 }
-void importSVToFile(ST ds[], int n){
+void importSVToFile(ST dssv[], int m){
 	FILE *f;
 	f = fopen("Student.txt", "wb");
 	if(f==NULL){
 		printf("\nLoi moi file de ghi!");
 		return;
 	}
-	fwrite(&n, sizeof(n), 1, f);
-	for(int i=0; i<n; i++){
-		fwrite(&ds[i], sizeof(SV), 1, f);
+	fwrite(&m, sizeof(m), 1, f);
+	for(int i=0; i<m; i++){
+		fwrite(&dssv[i], sizeof(ST), 1, f);
 	}
 	fclose(f);
 }
-void exportSVFromFile(ST ds[], int &n){
+void exportSVFromFile(ST dssv[], int &m){
 	FILE *f;
 	f = fopen("Student.txt", "rb");
 	if(f==NULL){
 		printf("\nLoi moi file de doc!");
 		return;
 	}
-	fread(&n, sizeof(n), 1, f);
-	for(int i=0; i<n; i++){
-		fread(&ds[i], sizeof(SV), 1, f);
+	fread(&m, sizeof(m), 1, f);
+	for(int i=0; i<m; i++){
+		fread(&dssv[i], sizeof(ST), 1, f);
 	}
 	fclose(f);
 }
@@ -174,42 +174,42 @@ void displayNameSV(ST st){
 	printf("\nStudent Name: %s", st.tensv);
 	printf("\nMajor: %s", st.nganhsv);
 }
-void displayNameSVList(ST ds[], int n){
-	for(int i=0;i<n;i++){
+void displayNameSVList(ST dssv[], int m){
+	for(int i=0;i<m;i++){
 			printf("\n--------------------");
-			displayName(ds[i]);
+			displayName(dssv[i]);
 	}
 }
-int findStudent(ST ds[], int n, char tensv[]){
-	for(int i=0; i<n ; i++){
-		if(strstr(strupr(ds[i].tensv), strupr(tensv))){
-			displayNameSV(ds[i]);
+int findStudent(ST dssv[], int m, char tensv[]){
+	for(int i=0; i<m ; i++){
+		if(strstr(strupr(dssv[i].tensv), strupr(tensv))){
+			displayNameSV(dssv[i]);
 		}
 	}
 	return 0;
 }
 int main(){
 	SV ds[100];
-	int n;
+	ST dssv[100];
+	int n, m;
 	int choose;
 	do{
 		printf("------------------MENU-----------------");
-		printf("\n1 - Them sach vao thu vien");
-		printf("\n2 - Sua thong tin sach");
-		printf("\n3 - Xoa mot cuon sach");
-		printf("\n4 - In ra danh sach sach");
-		printf("\n5 - Tim mot quyen sach");
-		printf("\n6 - Thong tin 1 sinh vien");
-		printf("\n7 - Liet ke toan bo thong tin sinh vien");
-		printf("\n8 - Xoa thong tin sinh vien");
-		printf("\n9 - Muon sach");
-		printf("\n10 - Liet ke nhung sach da muon cua sinh vien");
-		printf("\n11 - Tra sach");
-		printf("\n12 - Liet ke toan bo sach da duoc muon");
-		printf("\n13 - Tinh tien phat");
-		printf("\n14 - .Tim mot hoc sinh theo ten");
-		printf("\n15 - Thoat");
-		printf("\n----------------------------------------\ n\n");
+		printf("\n1.Them sach vao thu vien");
+		printf("\n2.Sua thong tin sach");
+		printf("\n3.Xoa mot cuon sach");
+		printf("\n4.Hien thi danh sach sach co trong thu vien");
+		printf("\n5.NhapThong tin sinh vien");
+		printf("\n6.Sua thong tin sinh vien");
+		printf("\n7.Xoa mot sinh vien");
+		printf("\n8.Liet ke toan bo sinh vien");
+		printf("\n9.");
+		printf("\n10.");
+		printf("\n11.");
+		printf("\n12.");
+		printf("\n13.Tinh tien phat");
+		printf("\n14.Tim mot quyen sach");
+		printf("\n15.Tim mot hoc sinh theo ten");
 		printf("\nPlease choose menu(1-14): ");
 		scanf("%d", &choose);
 		switch(choose){
@@ -227,16 +227,16 @@ int main(){
 				displayNameList(ds,n);
 				break;
 			case 5 :
-				addStudentList(ds,n);
-				importToFileSV(ds,n);
+				addStudentList(dssv,m);
+				importToFileSV(dssv,m);
 				break;
 				//Dang gap loi trung (SachVo trung SinhVien)
 			case 6 :
 			case 7 :
 			case 8 :
-				exportFromFileSV(ds,n);
-				sapXepDanhSachSVTheoTen(ds,n);
-				displayNameSVList(ds,n);
+				exportFromFileSV(dssv,m);
+				sapXepDanhSachSVTheoTen(dssv,m);
+				displayNameSVList(dssv,m);
 			case 9 :
 			case 10 :
 			case 11 :
@@ -252,17 +252,17 @@ int main(){
 				printf("%d", findBook(ds,n,nameToFind));
 				break;
 			case 15: 
-				exportFromFileSV(ds,n);
-				char nameToFind[20];
+				exportFromFileSV(dssv,m);
+				char nameToFindSV[20];
 				printf("Nhap ten sinh vien can tim: ");
 				fflush(stdin);
-				fgets(nameToFind, sizeof(nameToFind), stdin);
-				xoaXuongDong(nameToFind);
-				printf("%d", findStudent(ds,n,nameToFind));
+				fgets(nameToFindSV, sizeof(nameToFindSV), stdin);
+				xoaXuongDong(nameToFindSV);
+				printf("%d", findStudent(dssv,m,nameToFindSV));
 				break;
 			default : exit;
 		}
 								
 				
-		}while(choose<1 || choose>14);
+		}while(choose<1 || choose>15);
 }
