@@ -256,10 +256,10 @@ int main(){
 		printf("\n6.Sua thong tin sinh vien");
 		printf("\n7.Xoa mot sinh vien");
 		printf("\n8.Liet ke toan bo sinh vien");
-		printf("\n9.");
-		printf("\n10.");
-		printf("\n11.");
-		printf("\n12.");
+		printf("\n9.Muon sach");
+		printf("\n10.Tra sach");
+		printf("\n11.Sach 1 hoc muon");
+		printf("\n12.Toan bo sach duoc muon trong thu vien");
 		printf("\n13.Tinh tien phat");
 		printf("\n14.Tim mot quyen sach");
 		printf("\n15.Tim mot hoc sinh theo ten");
