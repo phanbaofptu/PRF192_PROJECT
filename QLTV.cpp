@@ -50,10 +50,10 @@ void addBookList(SV ds[], int &n){
 			themSach(ds[i]);
 		}
 }
-void sapXepDanhSachSachTheoTen(SV ds[], int n){
+void sapXepDanhSachSachTheoID(SV ds[], int n){
 	for(int i=0; i<n-1; i++){
 		for(int j=i+1; j<n; j++){
-			if(strcmp(strupr(ds[i].ten), strupr(ds[j].ten))>0){
+			if(strcmp(strupr(ds[i].id), strupr(ds[j].id))>0){
 				SV temp;
 				temp = ds[i];
 				ds[i] = ds[j];
@@ -177,7 +177,7 @@ int main(){
 				//Chua biet
 			case 4 :
 				exportFromFile(ds,n);
-				sapXepDanhSachSachTheoTen(ds,n);
+				sapXepDanhSachSachTheoID(ds,n);
 				displayNameList(ds,n);
 				break;
 			case 5 :
