@@ -228,13 +228,13 @@ int main(){
 				break;
 			case 5 :
 				addStudentList(dssv,m);
-				importToFileSV(dssv,m);
+				importSVToFile(dssv,m);
 				break;
 				//Dang gap loi trung (SachVo trung SinhVien)
 			case 6 :
 			case 7 :
 			case 8 :
-				exportFromFileSV(dssv,m);
+				exportSVFromFile(dssv,m);
 				sapXepDanhSachSVTheoTen(dssv,m);
 				displayNameSVList(dssv,m);
 			case 9 :
