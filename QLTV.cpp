@@ -11,9 +11,9 @@ struct SachVo{
 	char tacgia[50];
 };
 struct SinhVien{
-	char id[10];
-	char ten[50];
-	char nganh[50];
+	char idsv[10];
+	char tensv[50];
+	char nganhsv[50];
 };
 
 typedef SachVo SV;
@@ -108,19 +108,42 @@ int findBook(SV ds[], int n, char ten[]){
 	return 0;
 }
 void addStudent(ST &st){
-	printf("\n========== Enter new student==========");
-	printf("\nStudent code: ");
+	printf("\n==========ADD STUDENT==========");
+	printf("\nStudent ID: ");
 	fflush(stdin);
-	fgets(st.id, sizeof(st.id),stdin);
-	printf("Student name: ");
+	fgets(st.idsv, sizeof(st.idsv),stdin);
+	printf("Student Name: ");
 	fflush(stdin);
-	fgets(st.ten, sizeof(st.ten),stdin);
-	xoaXuongDong(st.ten);
+	fgets(st.tensv, sizeof(st.tensv),stdin);
+	xoaXuongDong(st.tensv);
 	printf("Major: ");
 	fflush(stdin);
-	fgets(st.nganh, sizeof(st.nganh),stdin);
+	fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 }
-void importToFileSV(ST ds[], int n){
+void addStudentList(ST ds[], int &n){
+	do{
+		printf("\nEnter the number of Student: ");
+		scanf("%d", &n);
+	}
+	while(n<=0);
+		for(int i=0;i<n;i++){
+			printf("\nStudent No. %d", i+1);
+			addStudent(ds[i]);
+		}
+}
+void sapXepDanhSachSVTheoID(ST ds[], int n){
+	for(int i=0; i<n-1; i++){
+		for(int j=i+1; j<n; j++){
+			if(strcmp(strupr(ds[i].idsv), strupr(ds[j].idsv))>0){
+				ST temp;
+				temp = ds[i];
+				ds[i] = ds[j];
+				ds[j]=temp;
+			}
+		}
+	}
+}
+void importSVToFile(ST ds[], int n){
 	FILE *f;
 	f = fopen("Student.txt", "wb");
 	if(f==NULL){
@@ -129,20 +152,41 @@ void importToFileSV(ST ds[], int n){
 	}
 	fwrite(&n, sizeof(n), 1, f);
 	for(int i=0; i<n; i++){
-		fwrite(&ds[i], sizeof(ST), 1, f);
+		fwrite(&ds[i], sizeof(SV), 1, f);
 	}
 	fclose(f);
 }
-void addStudentList(ST ds[], int &n){
-	do{
-		printf("\nEnter the number of student: ");
-		scanf("%d", &n);
+void exportSVFromFile(ST ds[], int &n){
+	FILE *f;
+	f = fopen("Student.txt", "rb");
+	if(f==NULL){
+		printf("\nLoi moi file de doc!");
+		return;
 	}
-	while(n<=0);
-		for(int i=0;i<n;i++){
-			printf("\nStudent No. %d", i+1);
-			addStudent(ds[i]);
+	fread(&n, sizeof(n), 1, f);
+	for(int i=0; i<n; i++){
+		fread(&ds[i], sizeof(SV), 1, f);
+	}
+	fclose(f);
+}
+void displayNameSV(ST st){
+	printf("\nStudent ID: %s", sv.idsv);
+	printf("\nStudent Name: %s", sv.tensv);
+	printf("\nMajor: %s", sv.nganhsv);
+}
+void displayNameSVList(ST ds[], int n){
+	for(int i=0;i<n;i++){
+			printf("\n--------------------");
+			displayName(ds[i]);
+	}
+}
+int findStudent(ST ds[], int n, char tensv[]){
+	for(int i=0; i<n ; i++){
+		if(strstr(strupr(ds[i].tensv), strupr(tensv))){
+			displayNameSV(ds[i]);
 		}
+	}
+	return 0;
 }
 int main(){
 	SV ds[100];
