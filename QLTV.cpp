@@ -188,6 +188,17 @@ int findStudent(ST dssv[], int m, char tensv[]){
 	}
 	return 0;
 }
+void xoaSinhVienTheoId(ST dssv[], int &m, int idsv){
+	for(int i=0; i<m ; i++){
+		if(dssv[i].idsv == idsv){
+			for(int j=i; j<m; j++){
+				dssv[j] = dssv[j+1];
+			}
+			m-=1;
+			return;
+		}
+	}
+}
 int main(){
 	SV ds[100];
 	ST dssv[100];
@@ -233,6 +244,13 @@ int main(){
 				//Dang gap loi trung (SachVo trung SinhVien)
 			case 6 :
 			case 7 :
+				int id;
+				printf("\nNhap ID Sinh vien can xoa"); scanf("%d", &id);
+				printf("\nDanh sach sau khi xoa\n");
+				xoaSinhVienTheoId(dssv, m, idsv);
+				xuatDanhSachSinhVien(dssv, m);
+				nhapPhimBatKy();
+				break;
 			case 8 :
 				exportSVFromFile(dssv,m);
 				sapXepDanhSachSVTheoTen(dssv,m);
