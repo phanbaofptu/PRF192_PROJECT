@@ -252,7 +252,7 @@ int main(){
 				printf("%d", findBook(ds,n,nameToFind));
 				break;
 			case 15: 
-				exportFromFileSV(dssv,m);
+				exportSVFromFile(dssv,m);
 				char nameToFindSV[20];
 				printf("Nhap ten sinh vien can tim: ");
 				fflush(stdin);
