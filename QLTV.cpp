@@ -251,7 +251,8 @@ int main(){
 		printf("\n13.Tinh tien phat");
 		printf("\n14.Tim mot quyen sach");
 		printf("\n15.Tim mot hoc sinh theo ten");
-		printf("\nPlease choose menu(1-14): ");
+		printf("\n16.Thoat!");
+		printf("\nPlease choose menu(1-16): ");
 		scanf("%d", &choose);
 		switch(choose){
 			case 1 : 
@@ -271,18 +272,17 @@ int main(){
 				addStudentList(dssv,m);
 				importSVToFile(dssv,m);
 				break;
-				//Dang gap loi trung (SachVo trung SinhVien)
 			case 6 :
 			case 7 :
 				printf("\nNhap ID Sinh vien can xoa"); scanf("%s", &idsv);
 				printf("\nDanh sach sau khi xoa\n");
 				xoaSinhVienTheoId(dssv, m, idsv);
-				displayNameSVList(dssv, m);
 				break;
 			case 8 :
 				exportSVFromFile(dssv,m);
 				sapXepDanhSachSVTheoTen(dssv,m);
 				displayNameSVList(dssv,m);
+				break;
 			case 9 :
 			case 10 :
 			case 11 :
@@ -306,9 +306,10 @@ int main(){
 				xoaXuongDong(nameToFindSV);
 				printf("%d", findStudent(dssv,m,nameToFindSV));
 				break;
-			default : exit;
+			case 16: 
+				exit;
 		}
 								
 				
-		}while(choose<1 || choose>15);
+		}while(choose != 16);
 }
