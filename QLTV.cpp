@@ -62,6 +62,18 @@ void addBookList(SV ds[], int &n){
 			themSach(ds[i]);
 		}
 }
+// case 3 : tu lam
+void xoasachtheoID(SV dssv[], int &n, char id){
+	for(int i=0; i<n ; i++){
+		if(dssv[i].id == "id"){
+			for(int j=i; j<n; j++){
+				dssv[j] = dssv[j+1];
+			}
+			n-=1;
+			return;
+		}
+	}
+}
 void sapXepDanhSachSachTheoTen(SV ds[], int n){
 	for(int i=0; i<n-1; i++){
 		for(int j=i+1; j<n; j++){
@@ -262,7 +274,14 @@ int main(){
 			case 2 :
 				//Chua biet
 			case 3 :
-				//Chua biet
+				//case3 tu lam
+				int id;
+				printf("\nNhap ID sach can xoa : "); 
+				scanf("%d",&id);
+				printf("\nDanh sach sau khi xoa\n");
+				xoasachtheoID(dssv, m, idsv);
+				displayNameList(ds, n);
+				break;
 			case 4 :
 				exportFromFile(ds,n);
 				sapXepDanhSachSachTheoTen(ds,n);
