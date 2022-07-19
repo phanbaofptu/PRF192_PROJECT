@@ -26,6 +26,18 @@ void xoaXuongDong(char x[]){
 	}
 }
 
+int validDate( int d, int m, int y) 
+{
+        int maxd = 31; 
+            if ( d < 1 || d > 31 || m < 1 || m > 12 || y < 1) return 0;
+            if ( m == 4 || m == 6 || m == 9 || m == 11) maxd = 30;
+            else if (m == 2) 
+            {	
+                    maxd = ( y % 400 == 0 || ( y % 4 == 0 && y % 100 != 0) )? 29:28;
+            }
+        return d <= maxd; 
+}  
+
 void themSach(SachVo &sv){
 	printf("\nThem Sach Moi");
 	printf("\nID sach: ");
@@ -120,9 +132,25 @@ void addStudent(ST &st){
 	fflush(stdin);
 	fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 }
+
+void muonSach(ST &st, SV &sv){
+	printf("\nStudent ID: ");
+	fflush(stdin);
+	fgets(st.idsv, sizeof(st.idsv),stdin);
+	printf("Book ID: ");
+	fflush(stdin);
+	fgets(sv.id, sizeof(sv.id),stdin);
+	xoaXuongDong(st.tensv);
+	printf("Ngay muon: ");
+	scanf("%d %d %d", &d, & m, &y);
+	if ( !validDate( d, m, y) ) printf("ngay khong hop ly");
+        else fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
+	fflush(stdin);
+}
+
 void addStudentList(ST dssv[], int &m){
 	do{
-		printf("\nEnter the number of Student: ");
+		printf("\nEnter the ID of Student: ");
 		scanf("%d", &m);
 	}
 	while(m<=0);
@@ -131,6 +159,7 @@ void addStudentList(ST dssv[], int &m){
 			addStudent(dssv[i]);
 		}
 }
+
 void sapXepDanhSachSVTheoTen(ST dssv[], int m){
 	for(int i=0; i<m-1; i++){
 		for(int j=i+1; j<m; j++){
