@@ -177,7 +177,7 @@ void displayNameSV(ST st){
 void displayNameSVList(ST dssv[], int m){
 	for(int i=0;i<m;i++){
 			printf("\n--------------------");
-			displayName(dssv[i]);
+			displayNameSV(dssv[i]);
 	}
 }
 int findStudent(ST dssv[], int m, char tensv[]){
