@@ -50,10 +50,10 @@ void addBookList(SV ds[], int &n){
 			themSach(ds[i]);
 		}
 }
-void sapXepDanhSachSachTheoID(SV ds[], int n){
+void sapXepDanhSachSachTheoTen(SV ds[], int n){
 	for(int i=0; i<n-1; i++){
 		for(int j=i+1; j<n; j++){
-			if(strcmp(strupr(ds[i].id), strupr(ds[j].id))>0){
+			if(strcmp(strupr(ds[i].ten), strupr(ds[j].ten))>0){
 				SV temp;
 				temp = ds[i];
 				ds[i] = ds[j];
@@ -131,10 +131,10 @@ void addStudentList(ST ds[], int &n){
 			addStudent(ds[i]);
 		}
 }
-void sapXepDanhSachSVTheoID(ST ds[], int n){
+void sapXepDanhSachSVTheoTen(ST ds[], int n){
 	for(int i=0; i<n-1; i++){
 		for(int j=i+1; j<n; j++){
-			if(strcmp(strupr(ds[i].idsv), strupr(ds[j].idsv))>0){
+			if(strcmp(strupr(ds[i].tensv), strupr(ds[j].tensv))>0){
 				ST temp;
 				temp = ds[i];
 				ds[i] = ds[j];
@@ -197,17 +197,18 @@ int main(){
 		printf("\n1.Them sach vao thu vien");
 		printf("\n2.Sua thong tin sach");
 		printf("\n3.Xoa mot cuon sach");
-		printf("\n4.In ra danh sach sach");
-		printf("\n5.Thong tin sinh vien");
-		printf("\n6.");
-		printf("\n7.");
-		printf("\n8.");
+		printf("\n4.Hien thi danh sach sach co trong thu vien");
+		printf("\n5.NhapThong tin sinh vien");
+		printf("\n6.Sua thong tin sinh vien");
+		printf("\n7.Xoa mot sinh vien");
+		printf("\n8.Liet ke toan bo sinh vien");
 		printf("\n9.");
 		printf("\n10.");
 		printf("\n11.");
 		printf("\n12.");
 		printf("\n13.Tinh tien phat");
 		printf("\n14.Tim mot quyen sach");
+		printf("\n15.Tim mot hoc sinh theo ten");
 		printf("\nPlease choose menu(1-14): ");
 		scanf("%d", &choose);
 		switch(choose){
@@ -221,7 +222,7 @@ int main(){
 				//Chua biet
 			case 4 :
 				exportFromFile(ds,n);
-				sapXepDanhSachSachTheoID(ds,n);
+				sapXepDanhSachSachTheoTen(ds,n);
 				displayNameList(ds,n);
 				break;
 			case 5 :
@@ -232,6 +233,9 @@ int main(){
 			case 6 :
 			case 7 :
 			case 8 :
+				exportFromFileSV(ds,n);
+				sapXepDanhSachSVTheoTen(ds,n);
+				displayNameSVList(ds,n);
 			case 9 :
 			case 10 :
 			case 11 :
@@ -245,6 +249,15 @@ int main(){
 				fgets(nameToFind, sizeof(nameToFind), stdin);
 				xoaXuongDong(nameToFind);
 				printf("%d", findBook(ds,n,nameToFind));
+				break;
+			case 15: 
+				exportFromFileSV(ds,n);
+				char nameToFind[20];
+				printf("Nhap ten sinh vien can tim: ");
+				fflush(stdin);
+				fgets(nameToFind, sizeof(nameToFind), stdin);
+				xoaXuongDong(nameToFind);
+				printf("%d", findStudent(ds,n,nameToFind));
 				break;
 			default : exit;
 		}
