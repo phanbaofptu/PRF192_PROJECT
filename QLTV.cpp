@@ -122,6 +122,18 @@ void sapXepDanhSachSachTheoTen(SV ds[], int n){
 		}
 	}
 }
+
+void nhapDanhSachSachSinhVienMuon(SV ds[], int &n){
+	do{
+		printf("\nNhap vao so sach sinh vien muon muon:");
+		scanf("%d", &n);
+	}while(n<=0);
+	for(int i=0; i<n ; i++){
+		printf("\nQuyen sach thu %d: ", i);
+		 themSach(ds[i]);
+	}
+}
+
 void importToFile(SV ds[], int n){
 	FILE *f;
 	f = fopen("ThuVien.txt", "ab");
@@ -181,20 +193,29 @@ void addStudent(ST &st){
 	fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 }
 
-void muonSach(ST &st, SV &sv){
-	int d,m,y;
-	printf("\nStudent ID: ");
-	fflush(stdin);
-	fgets(st.idsv, sizeof(st.idsv),stdin);
-	printf("Book ID: ");
-	fflush(stdin);
-	fgets(sv.id, sizeof(sv.id),stdin);
-	xoaXuongDong(st.tensv);
-	printf("Ngay muon: ");
-	scanf("%d %d %d", &d, & m, &y);
-	if ( !validDate( d, m, y) ) printf("ngay khong hop ly");
-        else fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
-	fflush(stdin);
+void addBorrowedBook(SV ds[], int &n){
+	do{
+		printf("\nEnter the number of borrowed book :");
+		scanf("%d", &n);
+	}while(n<=0);
+	for(int i=0; i<n ; i++){
+		printf("\nNo %d: ", i);
+		 (ds[i]);
+	}
+}
+
+void importBookToFile(ST dssv[], int m){
+	FILE *f;
+	f = fopen("Sachmuon.txt", "ab");
+	if(f==NULL){
+		printf("\nError!!!!");
+		return;
+	}
+	fwrite(&m, sizeof(m), 1, f);
+	for(int i=0; i<m; i++){
+		fwrite(&dssv[i], sizeof(ST), 1, f);
+	}
+	fclose(f);
 }
 
 void addStudentList(ST dssv[], int &m){
@@ -343,6 +364,9 @@ int main(){
 				displayNameSVList(dssv,m);
 				break;
 			case 9 :
+				nhapDanhSachSachSinhVienMuon(dssv,m);
+			        importSachToFile(dssv,m);
+			        break;
 			case 10 :
 			case 11 :
 			case 12 :
