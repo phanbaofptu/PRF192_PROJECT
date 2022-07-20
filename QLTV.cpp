@@ -3,7 +3,6 @@
 #include "time.h"
 #include "conio.h"
 #include "stdlib.h"
-using namespace std;
 #define day 31
 #define month 12
 #define year 9999
