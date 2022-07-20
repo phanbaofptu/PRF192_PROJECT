@@ -342,23 +342,25 @@ int main(){
 			case 10 :
 			case 11 :
 			case 12 :
-			case 13 :int d,m,y;
-				 int dm, mm, ym;
-				 int cn ;
-				 //cn = chenh ngay
-				 int tp; // tp = tien phat mot ngay
-				 printf("nhap so tien phan mot ngay qua han: ");
-				 scanf("%d", &tp);
-				 printf("Nhap ngay muon: ");
-				 scanf("%d %d %d", &dm, &mm, &ym);
-				 printf("Nhap ngay tra: ");
-				 scanf("%d %d %d", &d, &m, &y);
-				 cn = abs(truNgay(d,m,y) - truNgay(dm,mm,ym));
-				 if (!validDate(d,m,y) || !validDate(dm, mm, ym)) printf("ngay khong hop le");
-				 else printf("Ngay da muon: %d\n",cn);
-				 if (cn > 30) printf("Tien phat tre %d ngay la: %d\n", cn - 30 , (cn - 30) *tp);
-				 else printf("ban da nap sach dung han\n");
-				 qsystem ("pause");
+			case 13 :
+				int d,m,y;
+				int dm, mm, ym;
+				int cn ;
+				//cn = chenh ngay
+				int tp; // tp = tien phat mot ngay
+				printf("nhap so tien phan mot ngay qua han: ");
+				scanf("%d", &tp);
+				printf("Nhap ngay muon: ");
+				scanf("%d %d %d", &dm, &mm, &ym);
+				printf("Nhap ngay tra: ");
+				scanf("%d %d %d", &d, &m, &y);
+				cn = abs(truNgay(d,m,y) - truNgay(dm,mm,ym));
+				if (!validDate(d,m,y) || !validDate(dm, mm, ym)) printf("ngay khong hop le");
+				else printf("Ngay da muon: %d\n",cn);
+				if (cn > 30) printf("Tien phat tre %d ngay la: %d\n", cn - 30 , (cn - 30) *tp);
+				else printf("ban da nap sach dung han\n");
+				qsystem ("pause");
+				break;
 			case 14 :
 				exportFromFile(ds,n);
 				char nameToFind[20];
