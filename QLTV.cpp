@@ -3,6 +3,10 @@
 #include "time.h"
 #include "conio.h"
 #include "stdlib.h"
+using namespace std;
+#define day 31
+#define month 12
+#define year 9999
 //SV : Sach Vo
 //ST : Student - Sinh Vien
 struct SachVo{
@@ -37,6 +41,38 @@ int validDate( int d, int m, int y)
             }
         return d <= maxd; 
 }  
+
+
+
+int truNgay(int d, int m, int y){
+	int t = 0;
+	while (year>=y){
+		if (year == y && month == m){
+			t += day - d;
+			break;
+		}
+		else {
+			if ( m == 4 || m == 6 || m == 9 || m == 11)
+			     t += 30 - d;
+			     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10|| m == 12)
+			     t += 31 - d;
+			     if (m == 2)
+				 {
+				 	if (y % 4 == 0 && y % 100 != 0 || y % 400 == 0)
+				 	    t += 29 - d;
+				 	else t += 28 - d;
+				 }
+				 m++; 
+				 d = 0;
+				 if (m == 13){
+				 	
+				 	y++; 
+					 m = 1;
+				 }
+		}
+	}
+	return t;
+}
 
 void themSach(SachVo &sv){
 	printf("\nThem Sach Moi");
@@ -306,7 +342,23 @@ int main(){
 			case 10 :
 			case 11 :
 			case 12 :
-			case 13 : //Chua co cong thuc + thong ke so ngay sinh vien tre
+			case 13 :int d,m,y;
+				 int dm, mm, ym;
+				 int cn ;
+				 //cn = chenh ngay
+				 int tp; // tp = tien phat mot ngay
+				 printf("nhap so tien phan mot ngay qua han: ");
+				 scanf("%d", &tp);
+				 printf("Nhap ngay muon: ");
+				 scanf("%d %d %d", &dm, &mm, &ym);
+				 printf("Nhap ngay tra: ");
+				 scanf("%d %d %d", &d, &m, &y);
+				 cn = abs(truNgay(d,m,y) - truNgay(dm,mm,ym));
+				 if (!validDate(d,m,y) || !validDate(dm, mm, ym)) printf("ngay khong hop le");
+				 else printf("Ngay da muon: %d\n",cn);
+				 if (cn > 30) printf("Tien phat tre %d ngay la: %d\n", cn - 30 , (cn - 30) *tp);
+				 else printf("ban da nap sach dung han\n");
+				 qsystem ("pause");
 			case 14 :
 				exportFromFile(ds,n);
 				char nameToFind[20];
