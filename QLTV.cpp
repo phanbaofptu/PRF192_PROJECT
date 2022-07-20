@@ -88,7 +88,7 @@ void sapXepDanhSachSachTheoTen(SV ds[], int n){
 }
 void importToFile(SV ds[], int n){
 	FILE *f;
-	f = fopen("ThuVien.txt", "w");
+	f = fopen("ThuVien.txt", "w+");
 	if(f==NULL){
 		printf("\nLoi moi file de ghi!");
 		return;
@@ -186,7 +186,7 @@ void sapXepDanhSachSVTheoTen(ST dssv[], int m){
 }
 void importSVToFile(ST dssv[], int m){
 	FILE *f;
-	f = fopen("Student.txt", "w");
+	f = fopen("Student.txt", "w+");
 	if(f==NULL){
 		printf("\nLoi moi file de ghi!");
 		return;
