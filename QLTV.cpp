@@ -23,6 +23,10 @@ struct SinhVien{
 typedef SachVo SV;
 typedef SinhVien ST;
 
+void addBorrowedBook(ST dssv[], int m, SV ds[], int n);
+int findStudent(ST dssv[], int m, char idsv[]);
+void importBookToFile(SV ds[],ST dssv[], int &m, int &n);
+
 void xoaXuongDong(char x[]){
 	size_t len = strlen(x);
 	if(x[len-1]=='\n'){
@@ -183,28 +187,17 @@ void addStudent(ST &st){
 }
 
 
-void nhapDanhSachSachSinhVienMuon(SV ds[], int &n, ST dssv[], int &m){
-	printf("\nNhap vao so sach sinh vien muon muon:");
-    scanf("%d", &n);
-	addStudent();
-	for(int i=0; i<n ; i++){
-		printf("\nQuyen sach thu %d: ", i);
-		 themSach(ds[i]);
-	}
+void addBorrowedBook(ST &st, ST dssv[], SV &sv, int m, SV ds[], int n){
+	//printf("\n==========ADD STUDENT==========");
+	printf("\nStudent ID: ");
+	fflush(stdin);
+	fgets(st.idsv, sizeof(st.idsv),stdin);
+//	xoaXuongDong(idToFindSV);
+	printf("\nBook ID: ");
+	fgets(sv.id, sizeof(sv.id),stdin);
+	if(findStudent(dssv,m,st.idsv)==0)
+		printf("Error!!!");
 }
-
-
-void addBorrowedBook(SV ds[],ST dssv[], int &m, int &n){
-	do{
-		printf("\nEnter the number of borrowed book :");
-		scanf("%d", &n);
-	}while(n<=0);
-	for(int i=0; i<n ; i++){
-		printf("\nNo %d: ", i);
-		 (ds[i]);
-	}
-}
-
 void importBookToFile(SV ds[],ST dssv[], int &m, int &n){
 	FILE *f;
 	f = fopen("Sachmuon.txt", "ab");
@@ -294,9 +287,9 @@ void displayNameSVList(ST dssv[], int m){
 			displayNameSV(dssv[i]);
 	}
 }
-int findStudent(ST dssv[], int m, char tensv[]){
+int findStudent(ST dssv[], int m, char idsv[]){
 	for(int i=0; i<m ; i++){
-		if(strstr(strupr(dssv[i].tensv), strupr(tensv))){
+		if(strstr(strupr(dssv[i].idsv), strupr(idsv))){
 			displayNameSV(dssv[i]);
 		}
 	}
@@ -314,6 +307,7 @@ void xoaSinhVienTheoId(ST dssv[], int &m, char idsv){
 	}
 }
 int main(){
+	
 	SV ds[100];
 	ST dssv[100];
 	int n, m;
@@ -376,8 +370,10 @@ int main(){
 				displayNameSVList(dssv,m);
 				break;
 			case 9 :
-				   nhapDanhSachSachSinhVienMuon(dssv,m);
-			        importBookToFile(dssv,m);
+					addBorrowedBook(dssv,m,ds,n);
+					importBookToFile(ds,dssv,m,n);
+				   //nhapDanhSachSachSinhVienMuon(dssv,m);
+			        //importBookToFile(dssv,m);
 			        break;
 			case 10 :
 			case 11 :
@@ -415,12 +411,12 @@ int main(){
 				break;
 			case 15: 
 				exportSVFromFile(dssv,m);
-				char nameToFindSV[20];
-				printf("Nhap ten sinh vien can tim: ");
+				char idToFindSV[20];
+				printf("Nhap ID sinh vien can tim: ");
 				fflush(stdin);
-				fgets(nameToFindSV, sizeof(nameToFindSV), stdin);
-				xoaXuongDong(nameToFindSV);
-				printf("%d", findStudent(dssv,m,nameToFindSV));
+				fgets(idToFindSV, sizeof(idToFindSV), stdin);
+				xoaXuongDong(idToFindSV);
+				printf("%d", findStudent(dssv,m,idToFindSV));
 				break;
 			case 16: 
 				exit;
