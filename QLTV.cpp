@@ -225,7 +225,7 @@ void importSVToFile(ST dssv[], int m){
 	FILE *f;
 	f = fopen("Student.txt", "ab");
 	if(f==NULL){
-		printf("\nLoi moi file de ghi!");
+		printf("\nError FILE!");
 		return;
 	}
 	fwrite(&m, sizeof(m), 1, f);
@@ -238,7 +238,7 @@ void exportSVFromFile(ST dssv[], int &m){
 	FILE *f;
 	f = fopen("Student.txt", "rb");
 	if(f==NULL){
-		printf("\nLoi moi file de doc!");
+		printf("\nError FILE!");
 		return;
 	}
 	fread(&m, sizeof(m), 1, f);
@@ -295,7 +295,7 @@ int main(){
 		printf("\n8.Liet ke toan bo sinh vien");
 		printf("\n9.Muon sach");
 		printf("\n10.Tra sach");
-		printf("\n11.Sach 1 hoc muon");
+		printf("\n11.Liet ke danh sach da muon cua 1 sinh vien");
 		printf("\n12.Toan bo sach duoc muon trong thu vien");
 		printf("\n13.Tinh tien phat");
 		printf("\n14.Tim mot quyen sach");
