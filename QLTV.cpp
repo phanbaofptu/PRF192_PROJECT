@@ -18,9 +18,14 @@ struct SinhVien{
 	char tensv[50];
 	char nganhsv[50];
 };
+struct MuonSach{
+	char studentid[10];
+	char bookid[50];
+};
 
 typedef SachVo SV;
 typedef SinhVien ST;
+typedef MuonSach MS;
 
 void xoaXuongDong(char x[]);
 int validDate( int d, int m, int y);
@@ -35,9 +40,13 @@ void displayName(SV sv);
 void displayNameList(SV ds[], int n);
 int findBook(SV ds[], int n, char ten[]);
 void addStudent(ST &st);
-void addBorrowedBook(ST &st, ST dssv[], SV &sv, int m, SV ds[], int n);
-void importBookToFile(SV ds[],ST dssv[], int &m, int &n);
-void exportBookFromFile(SV ds[],ST dssv[], int &m, int &n);
+void themMuonSach(MuonSach &ms);
+void displayNameBorrow(MS ms);
+void addBorrowBookList(MS dsms[], int &o);
+void importBorrowToFile(MS dsms[], int o);
+void exportBorrowFromFile(MS dsms[], int &o);
+void displayNameBorrow(MS ms);
+int findIDBorrow(MS dsms[], int o, char idnguoimuon[]);
 void addStudentList(ST dssv[], int &m);
 void sapXepDanhSachSVTheoTen(ST dssv[], int m);
 void importSVToFile(ST dssv[], int m);
@@ -193,6 +202,70 @@ int findBook(SV ds[], int n, char ten[]){
 	}
 	return 0;
 }
+void themMuonSach(MuonSach &ms){
+	printf("\nStudent ID: ");
+	fflush(stdin);
+	fgets(ms.studentid, sizeof(ms.studentid),stdin);
+	printf("Book ID: ");
+	fflush(stdin);
+	fgets(ms.bookid, sizeof(ms.bookid),stdin);
+}
+void addBorrowBookList(MS dsms[], int &o){
+	do{
+		printf("\nEnter the number of person want to borrow: ");
+		scanf("%d", &o);
+	}
+	while(o<=0);
+		for(int i=0;i<o;i++){
+			printf("\nTransactions No. %d", i+1);
+			themMuonSach(dsms[i]);
+		}
+}
+
+void importBorrowToFile(MS dsms[], int o){
+	FILE *f;
+	f = fopen("Muonsach.txt", "ab");
+	if(f==NULL){
+		printf("\nLoi moi file de ghi!");
+		return;
+	}
+	fwrite(&o, sizeof(o), 1, f);
+	for(int i=0; i<o; i++){
+		fwrite(&dsms[i], sizeof(MS), 1, f);
+	}
+	fclose(f);
+}
+void exportBorrowFromFile(MS dsms[], int &o){
+	FILE *f;
+	f = fopen("Muonsach.txt", "rb");
+	if(f==NULL){
+		printf("\nLoi moi file de doc!");
+		return;
+	}
+	fread(&o, sizeof(o), 1, f);
+	for(int i=0; i<o; i++){
+		fread(&dsms[i], sizeof(MS), 1, f);
+	}
+	fclose(f);
+}
+void displayNameBorrow(MS ms){
+	printf("\nStudent ID : %s", ms.studentid);
+	printf("Book ID: %s", ms.bookid);
+}
+void displayNameBorrowList(MS dsms[], int o){
+	for(int i=0;i<o;i++){
+			printf("\n--------------------");
+			displayNameBorrow(dsms[i]);
+	}
+}
+int findIDBorrow(MS dsms[], int o, char idnguoimuon[]){
+	for(int i=0; i<o ; i++){
+		if(strstr(strupr(dsms[i].studentid), strupr(idnguoimuon))){
+			displayNameBorrow(dsms[i]);
+		}
+	}
+	return 0;
+}
 void addStudent(ST &st){
 	printf("\n==========ADD STUDENT==========");
 	printf("\nStudent ID: ");
@@ -207,53 +280,6 @@ void addStudent(ST &st){
 	fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 }
 
-
-void addBorrowedBook(ST &st, ST dssv[], SV &sv, int m, SV ds[], int n){
-	//printf("\n==========ADD STUDENT==========");
-	printf("\nStudent ID: ");
-	fflush(stdin);
-	fgets(st.idsv, sizeof(st.idsv),stdin);
-//	xoaXuongDong(idToFindSV);
-	printf("\nBook ID: ");
-	fgets(sv.id, sizeof(sv.id),stdin);
-	if(findStudent(dssv,m,st.idsv)==0){
-	    printf("Error!!!\n");
-	    addStudentList(dssv,m);
-	    importSVToFile(dssv,m);
-	    importBookToFile(ds,dssv,m,n);
-	    printf("Success!\n");
-	}else{
-		importBookToFile(ds,dssv,m,n);
-		printf("Success!\n");		
-	}
-}
-void importBookToFile(SV ds[],ST dssv[], int &m, int &n){
-	FILE *f;
-	f = fopen("Sachmuon.txt", "ab");
-	if(f==NULL){
-		printf("\nError!!!!");
-		return;
-	}
-	fwrite(&m, sizeof(m), 1, f);
-	for(int i=0; i<m; i++){
-		fwrite(&dssv[i], sizeof(ST), 1, f);
-	}
-	fclose(f);
-}
-
-void exportBookFromFile(SV ds[],ST dssv[], int &m, int &n){
-	FILE *f;
-	f = fopen("Sachmuon.txt", "rb");
-	if(f==NULL){
-		printf("\nError!!!");
-		return;
-	}
-	fread(&m, sizeof(m), 1, f);
-	for(int i=0; i<m; i++){
-		fread(&dssv[i], sizeof(ST), 1, f);
-	}
-	fclose(f);
-}
 
 void addStudentList(ST dssv[], int &m){
 	do{
@@ -339,8 +365,9 @@ int main(){
 	
 	SV ds[100];
 	ST dssv[100];
-	int n, m;
-	char idsv;
+	MS dsms[100];
+	int n, m, o;
+	char idsv, idnguoimuon;
 	int choose;
 	do{
 		printf("------------------MENU-----------------");
@@ -349,12 +376,13 @@ int main(){
 		printf("\n3.NhapThong tin sinh vien");
 		printf("\n4.Liet ke toan bo sinh vien");
 		printf("\n5.Muon sach");
-		printf("\n6.Toan bo sach trong thu vien");
+		printf("\n6.Toan bo sach da duoc muon trong thu vien");
 		printf("\n7.Tinh tien phat");
-		printf("\n8.Tim mot quyen sach");
+		printf("\n8.Tim mot quyen sach theo ten");
 		printf("\n9.Tim mot hoc sinh theo ID");
-		printf("\n10.Thoat!");
-		printf("\nPlease choose menu(1-16): ");
+		printf("\n10.Tim mot hoc sinh da muon sach theo ID");
+		printf("\n11.Thoat!");
+		printf("\nPlease choose menu(1-11): ");
 		scanf("%d", &choose);
 		switch(choose){
 			case 1 : 
@@ -376,14 +404,12 @@ int main(){
 				displayNameSVList(dssv,m);
 				break;
 			case 5 :
-					ST st;
-					SV sv;
-			        addBorrowedBook(st, dssv,sv, m,ds,n);
-			        
-			        break;
+				addBorrowBookList(dsms,o);
+				importBorrowToFile(dsms,o);
+				break;
 			case 6 :
-				exportBookFromFile(ds,dssv,m,n);
-				displayNameList(ds,n);
+				exportBorrowFromFile(dsms,o);
+				displayNameBorrowList(dsms,o);
 				break;
 			case 7 :
 				int d,m,y;
@@ -422,7 +448,16 @@ int main(){
 				xoaXuongDong(idToFindSV);
 				printf("%d", findStudent(dssv,m,idToFindSV));
 				break;
-			case 10: exit;
+			case 10:
+				exportBorrowFromFile(dsms,o);
+				char idToFindBR[20];
+				printf("Nhap ID sinh vien muon sach can tim: ");
+				fflush(stdin);
+				fgets(idToFindBR, sizeof(idToFindBR), stdin);
+				xoaXuongDong(idToFindBR);
+				printf("%d", findIDBorrow(dsms,o,idToFindBR));
+				break;
+			case 11: exit;
 		}
 	}while(choose != 10);	
 }
