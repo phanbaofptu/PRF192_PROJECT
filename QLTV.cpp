@@ -25,6 +25,30 @@ typedef SinhVien ST;
 void addBorrowedBook(ST dssv[], int m, SV ds[], int n);
 int findStudent(ST dssv[], int m, char idsv[]);
 void importBookToFile(SV ds[],ST dssv[], int &m, int &n);
+int validDate( int d, int m, int y) ;
+int truNgay(int d, int m, int y);
+void themSach(SachVo &sv);
+void addBookList(SV ds[], int &n);
+void xoasachtheoID(SV dssv[], int &n, char id);
+void sapXepDanhSachSachTheoTen(SV ds[], int n);
+void importToFile(SV ds[], int n);
+void exportFromFile(SV ds[], int &n)
+void displayName(SV sv);
+void displayNameList(SV ds[], int n);
+int findBook(SV ds[], int n, char ten[]);
+void addStudent(ST &st);
+void addBorrowedBook(ST &st, ST dssv[], SV &sv, int m, SV ds[], int n);
+void importBookToFile(SV ds[],ST dssv[], int &m, int &n);
+void exportBookFromFile(SV ds[],ST dssv[], int &m, int &n);
+void addStudentList(ST dssv[], int &m);
+void sapXepDanhSachSVTheoTen(ST dssv[], int m);
+void importSVToFile(ST dssv[], int m);
+void exportSVFromFile(ST dssv[], int &m);
+void displayNameSV(ST st);
+void displayNameSVList(ST dssv[], int m);
+int findStudent(ST dssv[], int m, char idsv[]);
+void xoaSinhVienTheoId(ST dssv[], int &m, char idsv);
+
 
 void xoaXuongDong(char x[]){
 	size_t len = strlen(x);
