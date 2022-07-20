@@ -122,6 +122,18 @@ void sapXepDanhSachSachTheoTen(SV ds[], int n){
 		}
 	}
 }
+
+void nhapDanhSachSachSinhVienMuon(SV ds[], int &n){
+	do{
+		printf("\nNhap vao so sach sinh vien muon muon:");
+		scanf("%d", &n);
+	}while(n<=0);
+	for(int i=0; i<n ; i++){
+		printf("\nQuyen sach thu %d: ", i);
+		 themSach(ds[i]);
+	}
+}
+
 void importToFile(SV ds[], int n){
 	FILE *f;
 	f = fopen("ThuVien.txt", "ab");
@@ -349,6 +361,9 @@ int main(){
 				displayNameSVList(dssv,m);
 				break;
 			case 9 :
+				nhapDanhSachSachSinhVienMuon(dssv,m);
+			        importSachToFile(dssv,m);
+			        break;
 			case 10 :
 			case 11 :
 			case 12 :
