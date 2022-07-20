@@ -22,10 +22,8 @@ struct SinhVien{
 typedef SachVo SV;
 typedef SinhVien ST;
 
-void addBorrowedBook(ST dssv[], int m, SV ds[], int n);
-int findStudent(ST dssv[], int m, char idsv[]);
-void importBookToFile(SV ds[],ST dssv[], int &m, int &n);
-int validDate( int d, int m, int y) ;
+void xoaXuongDong(char x[]);
+int validDate( int d, int m, int y);
 int truNgay(int d, int m, int y);
 void themSach(SachVo &sv);
 void addBookList(SV ds[], int &n);
@@ -220,6 +218,9 @@ void addBorrowedBook(ST &st, ST dssv[], SV &sv, int m, SV ds[], int n){
 	fgets(sv.id, sizeof(sv.id),stdin);
 	if(findStudent(dssv,m,st.idsv)==0)
 		printf("Error!!!");
+	else{
+		importBookToFile(ds,dssv,m,n);
+	}
 }
 void importBookToFile(SV ds[],ST dssv[], int &m, int &n){
 	FILE *f;
@@ -348,7 +349,7 @@ int main(){
 		printf("\n8.Toan bo sach trong thu vien");
 		printf("\n9.Tinh tien phat");
 		printf("\n10.Tim mot quyen sach");
-		printf("\n11.Tim mot hoc sinh theo ten");
+		printf("\n11.Tim mot hoc sinh theo ID");
 		printf("\n12.Thoat!");
 		printf("\nPlease choose menu(1-16): ");
 		scanf("%d", &choose);
@@ -386,8 +387,10 @@ int main(){
 				displayNameSVList(dssv,m);
 				break;
 			case 7 :
-			        addBorrowedBook(dssv,m,ds,n);
-			        importBookToFile(ds,dssv,m,n);
+					ST st;
+					SV sv;
+			        addBorrowedBook(st, dssv,sv, m,ds,n);
+			        
 			        break;
 			case 8 :
 				exportBookFromFile(ds,dssv,m,n);
@@ -409,7 +412,7 @@ int main(){
 				if (!validDate(d,m,y) || !validDate(dm, mm, ym)) printf("ngay khong hop le");
 				else printf("Ngay da muon: %d\n",cn);
 				if (cn > 30) printf("Tien phat tre %d ngay la: %d\n", cn - 30 , (cn - 30) *tp);
-				else printf("ban da nap sach dung han\n");
+				else printf("Ban da nap sach dung han\n");
 				system ("pause");
 				break;
 			case 10 :
@@ -432,5 +435,5 @@ int main(){
 				break;
 			case 12: exit;
 		}
-	}while(choose != 16);	
+	}while(choose != 12);	
 }
