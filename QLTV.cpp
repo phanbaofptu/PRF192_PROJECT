@@ -3,7 +3,6 @@
 #include "time.h"
 #include "conio.h"
 #include "stdlib.h"
-using namespace std;
 #define day 31
 #define month 12
 #define year 9999
@@ -74,6 +73,7 @@ int truNgay(int d, int m, int y){
 	return t;
 }
 
+// CASE 1
 void themSach(SachVo &sv){
 	printf("\nThem Sach Moi");
 	printf("\nID sach: ");
@@ -98,7 +98,7 @@ void addBookList(SV ds[], int &n){
 			themSach(ds[i]);
 		}
 }
-// case 3 : tu lam
+// CASE 3
 void xoasachtheoID(SV dssv[], int &n, char id){
 	for(int i=0; i<n ; i++){
 		if(dssv[i].id == "id"){
@@ -277,6 +277,9 @@ void xoaSinhVienTheoId(ST dssv[], int &m, char idsv){
 		}
 	}
 }
+
+
+
 int main(){
 	SV ds[100];
 	ST dssv[100];
@@ -382,8 +385,6 @@ int main(){
 				break;
 			case 16: 
 				exit;
-		}
-								
-				
+		}											
 		}while(choose != 16);	
 }
