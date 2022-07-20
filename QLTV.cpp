@@ -114,7 +114,7 @@ void exportFromFile(SV ds[], int &n){
 }
 void displayName(SV sv){
 	printf("\nBook code : %s", sv.id);
-	printf("\nBook name: %s", sv.ten);
+	printf("Book name: %s", sv.ten);
 	printf("\nTac gia: %s", sv.tacgia);
 }
 void displayNameList(SV ds[], int n){
@@ -212,7 +212,7 @@ void exportSVFromFile(ST dssv[], int &m){
 }
 void displayNameSV(ST st){
 	printf("\nStudent ID: %s", st.idsv);
-	printf("\nStudent Name: %s", st.tensv);
+	printf("Student Name: %s", st.tensv);
 	printf("\nMajor: %s", st.nganhsv);
 }
 void displayNameSVList(ST dssv[], int m){
