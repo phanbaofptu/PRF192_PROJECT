@@ -216,10 +216,15 @@ void addBorrowedBook(ST &st, ST dssv[], SV &sv, int m, SV ds[], int n){
 //	xoaXuongDong(idToFindSV);
 	printf("\nBook ID: ");
 	fgets(sv.id, sizeof(sv.id),stdin);
-	if(findStudent(dssv,m,st.idsv)==0)
-		printf("Error!!!");
-	else{
+	if(findStudent(dssv,m,st.idsv)==0){
+	    printf("Error!!!\n");
+	    addStudentList(dssv,m);
+	    importSVToFile(dssv,m);
+	    importBookToFile(ds,dssv,m,n);
+	    printf("Success!\n");
+	}else{
 		importBookToFile(ds,dssv,m,n);
+		printf("Success!\n");		
 	}
 }
 void importBookToFile(SV ds[],ST dssv[], int &m, int &n){
