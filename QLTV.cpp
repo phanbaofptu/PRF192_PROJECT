@@ -162,7 +162,7 @@ void muonSach(ST &st, SV &sv){
 
 void addStudentList(ST dssv[], int &m){
 	do{
-		printf("\nEnter the ID of Student: ");
+		printf("\nEnter the number of Student: ");
 		scanf("%d", &m);
 	}
 	while(m<=0);
