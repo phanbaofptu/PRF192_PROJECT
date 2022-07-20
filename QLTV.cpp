@@ -315,21 +315,17 @@ int main(){
 	do{
 		printf("------------------MENU-----------------");
 		printf("\n1.Them sach vao thu vien");
-		printf("\n2.Sua thong tin sach");
-		printf("\n3.Xoa mot cuon sach");
-		printf("\n4.Hien thi danh sach sach co trong thu vien");
-		printf("\n5.NhapThong tin sinh vien");
-		printf("\n6.Sua thong tin sinh vien");
-		printf("\n7.Xoa mot sinh vien");
-		printf("\n8.Liet ke toan bo sinh vien");
-		printf("\n9.Muon sach");
-		printf("\n10.Tra sach");
-		printf("\n11.Sach 1 sinh vien muon");
-		printf("\n12.Toan bo sach duoc muon trong thu vien");
-		printf("\n13.Tinh tien phat");
-		printf("\n14.Tim mot quyen sach");
-		printf("\n15.Tim mot hoc sinh theo ten");
-		printf("\n16.Thoat!");
+		printf("\n2.Xoa mot cuon sach");
+		printf("\n3.Hien thi danh sach sach co trong thu vien");
+		printf("\n4.NhapThong tin sinh vien");
+		printf("\n5.Xoa mot sinh vien");
+		printf("\n6.Liet ke toan bo sinh vien");
+		printf("\n7.Muon sach");
+		printf("\n8.Toan bo sach trong thu vien");
+		printf("\n9.Tinh tien phat");
+		printf("\n10.Tim mot quyen sach");
+		printf("\n11.Tim mot hoc sinh theo ten");
+		printf("\n12.Thoat!");
 		printf("\nPlease choose menu(1-16): ");
 		scanf("%d", &choose);
 		switch(choose){
@@ -338,8 +334,6 @@ int main(){
 				importToFile(ds,n);
 				break;
 			case 2 :
-				//Chua biet
-			case 3 :
 				//case3 tu lam
 				int id;
 				printf("\nNhap ID sach can xoa : "); 
@@ -348,39 +342,34 @@ int main(){
 				xoasachtheoID(ds, m, id);
 				displayNameList(ds, n);
 				break;
-			case 4 :
+			case 3 :
 				exportFromFile(ds,n);
 				sapXepDanhSachSachTheoTen(ds,n);
 				displayNameList(ds,n);
 				break;
-			case 5 :
+			case 4 :
 				addStudentList(dssv,m);
 				importSVToFile(dssv,m);
 				break;
-			case 6 :
-			case 7 :
+			case 5 :
 				printf("\nNhap ID Sinh vien can xoa"); scanf("%s", &idsv);
 				printf("\nDanh sach sau khi xoa\n");
 				xoaSinhVienTheoId(dssv, m, idsv);
 				break;
-			case 8 :
+			case 6 :
 				exportSVFromFile(dssv,m);
 				sapXepDanhSachSVTheoTen(dssv,m);
 				displayNameSVList(dssv,m);
 				break;
-			case 9 :
-					addBorrowedBook(dssv,m,ds,n);
-					importBookToFile(ds,dssv,m,n);
-				   //nhapDanhSachSachSinhVienMuon(dssv,m);
-			        //importBookToFile(dssv,m);
+			case 7 :
+			        addBorrowedBook(dssv,m,ds,n);
+			        importBookToFile(ds,dssv,m,n);
 			        break;
-			case 10 :
-			case 11 :
-			case 12 :
+			case 8 :
 				exportBookFromFile(ds,dssv,m,n);
 				displayNameList(ds,n);
 				break;
-			case 13 :
+			case 9 :
 				int d,m,y;
 				int dm, mm, ym;
 				int cn ;
@@ -399,7 +388,7 @@ int main(){
 				else printf("ban da nap sach dung han\n");
 				system ("pause");
 				break;
-			case 14 :
+			case 10 :
 				exportFromFile(ds,n);
 				char nameToFind[20];
 				printf("Nhap ten sach can tim: ");
@@ -408,7 +397,7 @@ int main(){
 				xoaXuongDong(nameToFind);
 				printf("%d", findBook(ds,n,nameToFind));
 				break;
-			case 15: 
+			case 11: 
 				exportSVFromFile(dssv,m);
 				char idToFindSV[20];
 				printf("Nhap ID sinh vien can tim: ");
@@ -417,10 +406,7 @@ int main(){
 				xoaXuongDong(idToFindSV);
 				printf("%d", findStudent(dssv,m,idToFindSV));
 				break;
-			case 16: 
-				exit;
+			case 12: exit;
 		}
-								
-				
-		}while(choose != 16);	
+	}while(choose != 16);	
 }
