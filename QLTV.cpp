@@ -182,6 +182,7 @@ void addStudent(ST &st){
 }
 
 void muonSach(ST &st, SV &sv){
+	int d,m,y;
 	printf("\nStudent ID: ");
 	fflush(stdin);
 	fgets(st.idsv, sizeof(st.idsv),stdin);
@@ -315,7 +316,7 @@ int main(){
 				printf("\nNhap ID sach can xoa : "); 
 				scanf("%d",&id);
 				printf("\nDanh sach sau khi xoa\n");
-				xoasachtheoID(dssv, m, idsv);
+				xoasachtheoID(ds, m, id);
 				displayNameList(ds, n);
 				break;
 			case 4 :
@@ -359,7 +360,7 @@ int main(){
 				else printf("Ngay da muon: %d\n",cn);
 				if (cn > 30) printf("Tien phat tre %d ngay la: %d\n", cn - 30 , (cn - 30) *tp);
 				else printf("ban da nap sach dung han\n");
-				qsystem ("pause");
+				system ("pause");
 				break;
 			case 14 :
 				exportFromFile(ds,n);
@@ -384,5 +385,5 @@ int main(){
 		}
 								
 				
-		}while(choose != 16);
+		}while(choose != 16);	
 }
