@@ -185,7 +185,26 @@ void muonSach(ST &st, SV &sv){
         else fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 	fflush(stdin);
 }
-
+//case 12:
+void Toanbosachduocmuontrongthuvien()
+{ 
+int i = 1;
+FILE *f;
+struct SachVo;
+f= fopen ("Sachvo.txt","r");
+if (f==NULL)
+{
+	printf(" loi roi/n");
+	return;
+}
+while(!feof(f));
+   
+   
+   printf("\t\nTong so sach muon trong thu vien la:%d");
+   fclose(f);
+   printf("\nBam enter de tiep tuc.");
+   getch();
+}
 void addStudentList(ST dssv[], int &m){
 	do{
 		printf("\nEnter the number of Student: ");
@@ -311,6 +330,8 @@ int main(){
 			case 10 :
 			case 11 :
 			case 12 :
+				Toanbosachduocmuontrongthuvien();
+                                break;
 			case 13 :
 				int d,m,y;
 				int dm, mm, ym;
