@@ -75,8 +75,8 @@ int truNgay(int d, int m, int y){
 }
 
 void themSach(SachVo &sv){
-	printf("\nThem Sach Moi");
-	printf("\nID sach: ");
+	printf("Them Sach Moi\n");
+	printf("ID sach: ");
 	fflush(stdin);
 	fgets(sv.id, sizeof(sv.id),stdin);
 	printf("Ten sach: ");
@@ -89,12 +89,12 @@ void themSach(SachVo &sv){
 }
 void addBookList(SV ds[], int &n){
 	do{
-		printf("\nEnter the number of book: ");
+		printf("Enter the number of book: \n");
 		scanf("%d", &n);
 	}
 	while(n<=0);
 		for(int i=0;i<n;i++){
-			printf("\nBook No. %d", i+1);
+			printf("Book No. %d\n", i+1);
 			themSach(ds[i]);
 		}
 }
@@ -311,7 +311,6 @@ int main(){
 			case 2 :
 				//Chua biet
 			case 3 :
-				//case3 tu lam
 				int id;
 				printf("\nNhap ID sach can xoa : "); 
 				scanf("%d",&id);
