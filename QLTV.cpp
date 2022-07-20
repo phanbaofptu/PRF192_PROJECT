@@ -98,18 +98,7 @@ void addBookList(SV ds[], int &n){
 			themSach(ds[i]);
 		}
 }
-// case 3 : tu lam
-void xoasachtheoID(SV dssv[], int &n, char id){
-	for(int i=0; i<n ; i++){
-		if(dssv[i].id == "id"){
-			for(int j=i; j<n; j++){
-				dssv[j] = dssv[j+1];
-			}
-			n-=1;
-			return;
-		}
-	}
-}
+
 void sapXepDanhSachSachTheoTen(SV ds[], int n){
 	for(int i=0; i<n-1; i++){
 		for(int j=i+1; j<n; j++){
@@ -266,17 +255,6 @@ int findStudent(ST dssv[], int m, char tensv[]){
 	}
 	return 0;
 }
-void xoaSinhVienTheoId(ST dssv[], int &m, char idsv){
-	for(int i=0; i<m ; i++){
-		if(dssv[i].idsv == "idsv"){
-			for(int j=i; j<m; j++){
-				dssv[j] = dssv[j+1];
-			}
-			m-=1;
-			return;
-		}
-	}
-}
 int main(){
 	SV ds[100];
 	ST dssv[100];
@@ -311,13 +289,7 @@ int main(){
 			case 2 :
 				//Chua biet
 			case 3 :
-				int id;
-				printf("\nNhap ID sach can xoa : "); 
-				scanf("%d",&id);
-				printf("\nDanh sach sau khi xoa\n");
-				xoasachtheoID(ds, m, id);
-				displayNameList(ds, n);
-				break;
+				// Bug qua lon, hong biet sua
 			case 4 :
 				exportFromFile(ds,n);
 				sapXepDanhSachSachTheoTen(ds,n);
@@ -329,10 +301,7 @@ int main(){
 				break;
 			case 6 :
 			case 7 :
-				printf("\nNhap ID Sinh vien can xoa"); scanf("%s", &idsv);
-				printf("\nDanh sach sau khi xoa\n");
-				xoaSinhVienTheoId(dssv, m, idsv);
-				break;
+				// Bug qua lon, hong biet sua
 			case 8 :
 				exportSVFromFile(dssv,m);
 				sapXepDanhSachSVTheoTen(dssv,m);
