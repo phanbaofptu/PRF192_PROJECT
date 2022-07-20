@@ -3,6 +3,7 @@
 #include "time.h"
 #include "conio.h"
 #include "stdlib.h"
+using namespace std;
 #define day 31
 #define month 12
 #define year 9999
@@ -73,7 +74,6 @@ int truNgay(int d, int m, int y){
 	return t;
 }
 
-// CASE 1
 void themSach(SachVo &sv){
 	printf("\nThem Sach Moi");
 	printf("\nID sach: ");
@@ -98,7 +98,7 @@ void addBookList(SV ds[], int &n){
 			themSach(ds[i]);
 		}
 }
-// CASE 3
+// case 3 : tu lam
 void xoasachtheoID(SV dssv[], int &n, char id){
 	for(int i=0; i<n ; i++){
 		if(dssv[i].id == "id"){
@@ -120,17 +120,6 @@ void sapXepDanhSachSachTheoTen(SV ds[], int n){
 				ds[j]=temp;
 			}
 		}
-	}
-}
-
-void nhapDanhSachSachSinhVienMuon(SV ds[], int &n){
-	do{
-		printf("\nNhap vao so sach sinh vien muon muon:");
-		scanf("%d", &n);
-	}while(n<=0);
-	for(int i=0; i<n ; i++){
-		printf("\nQuyen sach thu %d: ", i);
-		 themSach(ds[i]);
 	}
 }
 
@@ -193,7 +182,19 @@ void addStudent(ST &st){
 	fgets(st.nganhsv, sizeof(st.nganhsv),stdin);
 }
 
-void addBorrowedBook(SV ds[], int &n){
+
+void nhapDanhSachSachSinhVienMuon(SV ds[], int &n, ST dssv[], int &m){
+	printf("\nNhap vao so sach sinh vien muon muon:");
+    scanf("%d", &n);
+	addStudent();
+	for(int i=0; i<n ; i++){
+		printf("\nQuyen sach thu %d: ", i);
+		 themSach(ds[i]);
+	}
+}
+
+
+void addBorrowedBook(SV ds[],ST dssv[], int &m, int &n){
 	do{
 		printf("\nEnter the number of borrowed book :");
 		scanf("%d", &n);
@@ -204,7 +205,7 @@ void addBorrowedBook(SV ds[], int &n){
 	}
 }
 
-void importBookToFile(ST dssv[], int m){
+void importBookToFile(SV ds[],ST dssv[], int &m, int &n){
 	FILE *f;
 	f = fopen("Sachmuon.txt", "ab");
 	if(f==NULL){
@@ -214,6 +215,20 @@ void importBookToFile(ST dssv[], int m){
 	fwrite(&m, sizeof(m), 1, f);
 	for(int i=0; i<m; i++){
 		fwrite(&dssv[i], sizeof(ST), 1, f);
+	}
+	fclose(f);
+}
+
+void exportBookFromFile(SV ds[],ST dssv[], int &m, int &n){
+	FILE *f;
+	f = fopen("Sachmuon.txt", "rb");
+	if(f==NULL){
+		printf("\nError!!!");
+		return;
+	}
+	fread(&m, sizeof(m), 1, f);
+	for(int i=0; i<m; i++){
+		fread(&dssv[i], sizeof(ST), 1, f);
 	}
 	fclose(f);
 }
@@ -298,9 +313,6 @@ void xoaSinhVienTheoId(ST dssv[], int &m, char idsv){
 		}
 	}
 }
-
-
-
 int main(){
 	SV ds[100];
 	ST dssv[100];
@@ -319,7 +331,7 @@ int main(){
 		printf("\n8.Liet ke toan bo sinh vien");
 		printf("\n9.Muon sach");
 		printf("\n10.Tra sach");
-		printf("\n11.Sach 1 hoc muon");
+		printf("\n11.Sach 1 sinh vien muon");
 		printf("\n12.Toan bo sach duoc muon trong thu vien");
 		printf("\n13.Tinh tien phat");
 		printf("\n14.Tim mot quyen sach");
@@ -364,12 +376,15 @@ int main(){
 				displayNameSVList(dssv,m);
 				break;
 			case 9 :
-				nhapDanhSachSachSinhVienMuon(dssv,m);
-			        importSachToFile(dssv,m);
+				   nhapDanhSachSachSinhVienMuon(dssv,m);
+			        importBookToFile(dssv,m);
 			        break;
 			case 10 :
 			case 11 :
 			case 12 :
+				exportBookFromFile(ds,dssv,m,n);
+				displayNameList(ds,n);
+				break;
 			case 13 :
 				int d,m,y;
 				int dm, mm, ym;
@@ -409,6 +424,8 @@ int main(){
 				break;
 			case 16: 
 				exit;
-		}											
+		}
+								
+				
 		}while(choose != 16);	
 }
