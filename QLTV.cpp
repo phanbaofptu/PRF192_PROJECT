@@ -32,7 +32,7 @@ void addBookList(SV ds[], int &n);
 void xoasachtheoID(SV dssv[], int &n, char id);
 void sapXepDanhSachSachTheoTen(SV ds[], int n);
 void importToFile(SV ds[], int n);
-void exportFromFile(SV ds[], int &n)
+void exportFromFile(SV ds[], int &n);
 void displayName(SV sv);
 void displayNameList(SV ds[], int n);
 int findBook(SV ds[], int n, char ten[]);
