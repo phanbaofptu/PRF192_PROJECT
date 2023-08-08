@@ -6,8 +6,8 @@
 #define day 31
 #define month 12
 #define year 9999
-//SV : Sach Vo
-//ST : Student - Sinh Vien
+//SV: Sach Vo
+//ST: Student - Sinh Vien
 struct SachVo{
 	char id[10];
 	char ten[50];
