@@ -56,6 +56,3 @@ In ra toàn bộ sách < tầm 5-10 cuốn sách >
 
 =>Hàm main
 
-Link 1: https://www.titv.vn/2021/04/bai-84-quan-ly-sinh-vien-bang-kieu-du.html
-Link 2: https://www.titv.vn/2021/04/bai-85-quan-ly-sinh-vien-bang-kieu-du.html
-
